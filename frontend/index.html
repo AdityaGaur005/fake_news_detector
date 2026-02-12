@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fake News Detector</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --bg: #0f172a;
+  --card: #111827;
+  --accent: #38bdf8;
+  --real: #22c55e;
+  --fake: #ef4444;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg, #020617, #020617);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: var(--card);
+  width: 100%;
+  max-width: 800px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header p {
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+textarea {
+  width: 100%;
+  height: 140px;
+  background: #020617;
+  border: 1px solid #1f2933;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 16px;
+  color: var(--text);
+  resize: none;
+}
+
+textarea::placeholder {
+  color: var(--muted);
+}
+
+button {
+  margin-top: 16px;
+  width: 100%;
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #020617;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.loading {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--accent);
+}
+
+.result {
+  margin-top: 25px;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.real {
+  background: rgba(34,197,94,0.15);
+  border-left: 6px solid var(--real);
+}
+
+.fake {
+  background: rgba(239,68,68,0.15);
+  border-left: 6px solid var(--fake);
+}
+
+.result h3 {
+  margin-top: 0;
+}
+
+.sources {
+  margin-top: 12px;
+}
+
+.sources li {
+  margin-bottom: 8px;
+}
+
+.sources a {
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="header">
+    <h1>📰 Fake News Detector</h1>
+    <p>AI-powered real-time news verification</p>
+  </div>
+
+  <textarea id="newsInput" placeholder="Paste a news headline or statement here..."></textarea>
+  <button onclick="verifyNews()">Verify News</button>
+
+  <div id="output"></div>
+
+  <div class="footer">
+    Powered by Internet Verification + ML Fallback
+  </div>
+</div>
+
+<script>
+async function verifyNews() {
+  const text = document.getElementById("newsInput").value.trim();
+  const output = document.getElementById("output");
+
+  if (!text) {
+    output.innerHTML = "<div class='loading'>Please enter some news text.</div>";
+    return;
+  }
+
+  output.innerHTML = "<div class='loading'>🔍 Verifying news credibility...</div>";
+
+  try {
+    const res = await fetch("http://127.0.0.1:8000/verify-news", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ news: text })
+    });
+
+    const data = await res.json();
+    const isReal = data.verdict.toLowerCase().includes("real");
+
+    let html = `
+      <div class="result ${isReal ? "real" : "fake"}">
+        <h3>Verdict: ${data.verdict}</h3>
+        <p><strong>Confidence:</strong> ${data.confidence}%</p>
+    `;
+
+    if (data.sources && data.sources.length > 0) {
+      html += "<div class='sources'><strong>Trusted Sources:</strong><ul>";
+      data.sources.forEach(src => {
+        html += `<li>
+            <a href="${src.url}" target="_blank">
+                ${src.title} (${src.source})
+            </a>
+        </li>`;
+        });
+
+      html += "</ul></div>";
+    }
+
+    html += "</div>";
+    output.innerHTML = html;
+
+  } catch (e) {
+    output.innerHTML = "<div class='loading'>❌ Unable to connect to backend.</div>";
+  }
+}
+</script>
+
+</body>
+</html>
