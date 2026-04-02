@@ -182,4 +182,4 @@ Response:
 ## 👨‍💻 Author
 
 **Aditya Gaur**  
-BTech | Cloud & AI Enthusiast  loud & AI Enthusiast
+BTech | Cloud & AI Enthusiast
