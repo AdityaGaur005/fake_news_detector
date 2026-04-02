@@ -92,16 +92,31 @@ Final Output
 
 ---
 
-## 🌐 API Endpoints
 
-### Base URL
-http://127.0.0.1:8000
+## 🌐 API Example
 
+### Request:
 
-### 1. Health Check
-GET /
-
-
+```json
+{
+  "news": "India wins Asia Cup 2025"
+}
+```
+Response:
+```json
+{
+  "status": "verified_online",
+  "verdict": "Real (verified online)",
+  "confidence": 92,
+  "sources": [
+    {
+      "title": "...",
+      "source": "...",
+      "url": "..."
+    }
+  ]
+}
+```
 
 🧪 Example Outputs
 ✅ Real News
