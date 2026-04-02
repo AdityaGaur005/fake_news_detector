@@ -51,17 +51,17 @@ Input → Internet Verification → ML Model (if needed) → Output ✅
 
 ## 🏗️ Architecture
 User Input
-↓
+->
 NewsAPI Search
-↓
+->
 Semantic Similarity (MiniLM)
-↓
+->
 IF score ≥ threshold → VERIFIED
-↓
+->
 ELSE
-↓
+->
 DistilBERT Classifier
-↓
+->
 Final Output
 
 
@@ -101,28 +101,7 @@ http://127.0.0.1:8000
 ### 1. Health Check
 GET /
 
-### 2. Verify News
-POST /verify-news
-```markdown
-### Request:
-```json
-{
-  "news": "India wins Asia Cup 2025"
-}
 
-Response:
-{
-  "status": "verified_online",
-  "verdict": "Real (verified online)",
-  "confidence": 92,
-  "sources": [
-    {
-      "title": "...",
-      "source": "...",
-      "url": "..."
-    }
-  ]
-}
 
 🧪 Example Outputs
 ✅ Real News
