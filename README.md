@@ -118,52 +118,68 @@ Response:
 }
 ```
 
-🧪 Example Outputs
-✅ Real News
-Verdict: Real (verified online)
-Confidence: 90%
-Sources: BBC, Reuters
+## 🧪 Example Outputs
 
-❌ Fake News
-Verdict: Fake (ML-based)
-Confidence: 85%
+### ✅ Real News
+- **Verdict:** Real (verified online)  
+- **Confidence:** 90%  
+- **Sources:** BBC, Reuters  
 
+---
 
-🛠️ Tech Stack
-Backend:
-Python
-FastAPI
-PyTorch
-Transformers (HuggingFace)
-AI/NLP:
-DistilBERT
-Sentence Transformers
-Cosine Similarity
-Data Sources:
-ISOT Dataset
-WELFake Dataset
-NewsAPI (real-time)
-Frontend:
-HTML
-CSS
-JavaScript
+### ❌ Fake News
+- **Verdict:** Fake (ML-based)  
+- **Confidence:** 85%  
 
+---
 
-📌 Why This Project Stands Out
-Combines real-time verification + AI
-Handles real-world uncertainty
-Uses fallback mechanism (robust system design)
-Shows practical system thinking, not just ML
+## 🛠️ Tech Stack
 
-👉 This is a production-level approach, not just a college project.
+### Backend
+- Python  
+- FastAPI  
+- PyTorch  
+- Transformers (HuggingFace)  
 
-🔮 Future Improvements
-Integrate Google Fact Check API
-Add vector database (FAISS / Pinecone)
-Multi-language support
-Better threshold tuning
-Deploy on AWS (Lambda + API Gateway)
+### AI / NLP
+- DistilBERT  
+- Sentence Transformers  
+- Cosine Similarity  
 
-👨‍💻 Author
-Aditya Gaur
-BTech | Cloud & AI Enthusiast
+### Data Sources
+- ISOT Dataset  
+- WELFake Dataset  
+- NewsAPI (real-time)  
+
+### Frontend
+- HTML  
+- CSS  
+- JavaScript  
+
+---
+
+## 📌 Why This Project Stands Out
+
+- Combines **real-time verification + AI**  
+- Handles **real-world uncertainty**  
+- Uses **fallback mechanism (robust system design)**  
+- Shows **practical system thinking**, not just ML  
+
+👉 This is a **production-level approach**, not just a college project.
+
+---
+
+## 🔮 Future Improvements
+
+- Integrate Google Fact Check API  
+- Add vector database (FAISS / Pinecone)  
+- Multi-language support  
+- Better threshold tuning  
+- Deploy on AWS (Lambda + API Gateway)  
+
+---
+
+## 👨‍💻 Author
+
+**Aditya Gaur**  
+BTech | Cloud & AI Enthusiast  loud & AI Enthusiast
