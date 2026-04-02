@@ -163,7 +163,7 @@ Add vector database (FAISS / Pinecone)
 Multi-language support
 Better threshold tuning
 Deploy on AWS (Lambda + API Gateway)
-👨‍💻 Author
 
+👨‍💻 Author
 Aditya Gaur
 BTech | Cloud & AI Enthusiast
