@@ -103,12 +103,13 @@ GET /
 
 ### 2. Verify News
 POST /verify-news
-
-#### Request:
+```markdown
+### Request:
 ```json
 {
   "news": "India wins Asia Cup 2025"
 }
+
 Response:
 {
   "status": "verified_online",
